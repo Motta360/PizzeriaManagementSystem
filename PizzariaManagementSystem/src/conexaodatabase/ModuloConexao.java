@@ -15,7 +15,7 @@ public class ModuloConexao {
         String Driver = "com.mysql.cj.jdbc.Driver";
         String url = "jdbc:mysql://localhost:3306/pizzariadatabase";
         String user = "root";
-        String password = "12325678Lu";
+        String password = "root";
         
         try {
             Class.forName(Driver);

@@ -5,6 +5,7 @@
 package telas;
 import java.sql.*;
 import conexaodatabase.ModuloConexao;
+import javax.swing.JOptionPane;
 /**
  *
  * @author lucas
@@ -57,7 +58,7 @@ public class AdicionarUsuarios extends javax.swing.JInternalFrame {
             }
         });
 
-        Combobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Administrador", "Funcionário", " " }));
+        Combobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Admin", "Funcionário", " " }));
 
         jButton1.setText("Adicionar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -116,11 +117,22 @@ public class AdicionarUsuarios extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void addNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNomeActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_addNomeActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
+        conexao = ModuloConexao.connector();
+        try {
+            String sql = "insert into usuarios(Nome,Senha,Cargo) values(?,?,?)";
+            pst = conexao.prepareStatement(sql);
+            pst.setString(1, addNome.getText());
+            pst.setString(2, addSenha.getText());
+            pst.setString(3, String.valueOf(Combobox.getSelectedItem()));
+            pst.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Usuário adicionado com sucesso");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

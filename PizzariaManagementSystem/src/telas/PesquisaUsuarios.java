@@ -44,8 +44,6 @@ public class PesquisaUsuarios extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        gerenciaID = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -59,9 +57,6 @@ public class PesquisaUsuarios extends javax.swing.JInternalFrame {
         setClosable(true);
         setIconifiable(true);
         setTitle("Gerenciar Usuarios");
-
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel1.setText("Id");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel2.setText("Nome");
@@ -108,14 +103,11 @@ public class PesquisaUsuarios extends javax.swing.JInternalFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(gerenciaSenha))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING))
+                                .addComponent(jLabel2)
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(gerenciaID, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(106, 106, 106)
+                                        .addGap(232, 232, 232)
                                         .addComponent(jLabel5))
                                     .addComponent(gerenciaName, javax.swing.GroupLayout.PREFERRED_SIZE, 383, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
@@ -126,11 +118,8 @@ public class PesquisaUsuarios extends javax.swing.JInternalFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(gerenciaID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                .addGap(24, 24, 24)
+                .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(gerenciadorNumero)
                 .addGap(32, 32, 32)
@@ -147,7 +136,7 @@ public class PesquisaUsuarios extends javax.swing.JInternalFrame {
                     .addComponent(gerenciaCargo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(gerenciadorBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         pack();
@@ -156,8 +145,8 @@ public class PesquisaUsuarios extends javax.swing.JInternalFrame {
     private void gerenciadorBuscaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gerenciadorBuscaActionPerformed
         conexao = ModuloConexao.connector();
         try {
-            String id = gerenciaID.getText();
-            String sql = "select * from usuarios where idUsuarios = ?";
+            String id = gerenciaName.getText();
+            String sql = "select * from usuarios where Nome = ?";
             pst = conexao.prepareStatement(sql);
             pst.setString(1,id);
             rs = pst.executeQuery();
@@ -176,12 +165,10 @@ public class PesquisaUsuarios extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField gerenciaCargo;
-    private javax.swing.JTextField gerenciaID;
     private javax.swing.JTextField gerenciaName;
     private javax.swing.JTextField gerenciaSenha;
     private javax.swing.JButton gerenciadorBusca;
     private javax.swing.JLabel gerenciadorNumero;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
