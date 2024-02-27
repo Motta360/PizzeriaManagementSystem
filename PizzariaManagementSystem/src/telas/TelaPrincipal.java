@@ -26,7 +26,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         String dataformatada = data.format(myFormatObj);
         dataLabel.setText(String.valueOf(dataformatada));
         
-        
     }
 
     /**
