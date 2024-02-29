@@ -16,11 +16,9 @@ public class DeletarUsuarios extends javax.swing.JInternalFrame {
     Connection conexao = null;
     PreparedStatement pst = null;
     ResultSet rs = null;
-    /**
-     * Creates new form NewJInternalFrame
-     */
-    public DeletarUsuarios() {
-        initComponents();
+    int Rownumber;
+    
+    public void preenchertable(){
         conexao = ModuloConexao.connector();
         try {
             String sql = "select * from usuarios ";
@@ -30,14 +28,21 @@ public class DeletarUsuarios extends javax.swing.JInternalFrame {
                 String[] nomes = {rs.getString(2)};
                 DefaultTableModel table = (DefaultTableModel)jTable1.getModel();
                 table.addRow(nomes);
+               
             }
-            conexao.close();
+            
+            
           
         } catch (SQLException e) {
         }
+    }
+   
+    public DeletarUsuarios() {
+        initComponents();
+        preenchertable();
         
         
-        
+     
     }
  
     /**
@@ -139,6 +144,16 @@ public class DeletarUsuarios extends javax.swing.JInternalFrame {
                 pst.setString(1, delNome.getText());
                 pst.executeUpdate();
                 JOptionPane.showMessageDialog(null, "Usuário deletado com sucesso.");
+                DefaultTableModel table = (DefaultTableModel)jTable1.getModel();
+                int x = table.getRowCount();
+                for (int i = 0; i < x; i++) {
+                    table.removeRow(0);
+                }
+                preenchertable();
+                
+                
+                
+            
 
             }
             else{
