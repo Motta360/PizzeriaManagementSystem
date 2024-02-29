@@ -58,7 +58,7 @@ public class AdicionarUsuarios extends javax.swing.JInternalFrame {
             }
         });
 
-        Combobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Admin", "Funcionário", " " }));
+        Combobox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Admin", "Funcionário" }));
 
         jButton1.setText("Adicionar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -123,13 +123,27 @@ public class AdicionarUsuarios extends javax.swing.JInternalFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         conexao = ModuloConexao.connector();
         try {
-            String sql = "insert into usuarios(Nome,Senha,Cargo) values(?,?,?)";
-            pst = conexao.prepareStatement(sql);
-            pst.setString(1, addNome.getText());
-            pst.setString(2, addSenha.getText());
-            pst.setString(3, String.valueOf(Combobox.getSelectedItem()));
-            pst.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Usuário adicionado com sucesso");
+            if (addNome.getText().equals("") || addSenha.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Preencha todos os campos");
+            }
+            else{
+                String sql = "select * from usuarios where Nome = ?";
+                pst = conexao.prepareStatement(sql);
+                pst.setString(1, addNome.getText());
+                rs = pst.executeQuery();
+                if(rs.next()){
+                    JOptionPane.showMessageDialog(null, "Esse usuario já existe");
+                }
+                else{
+                    String sql1 = "insert into usuarios(Nome,Senha,Cargo) values(?,?,?)";
+                    pst = conexao.prepareStatement(sql1);
+                    pst.setString(1, addNome.getText());
+                    pst.setString(2, addSenha.getText());
+                    pst.setString(3, String.valueOf(Combobox.getSelectedItem()));
+                    pst.executeUpdate();
+                    JOptionPane.showMessageDialog(null, "Usuário adicionado com sucesso");
+                }
+            }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
