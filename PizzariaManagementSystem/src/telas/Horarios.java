@@ -54,9 +54,10 @@ public class Horarios extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Nome", "Hora"
+                "Nome", "Data/Hora"
             }
         ));
+        jTable1.setEnabled(false);
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
