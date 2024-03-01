@@ -6,6 +6,9 @@ package telas;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.sql.*;
+import conexaodatabase.ModuloConexao;
+import java.time.LocalDateTime;
 
 /**
  *
@@ -17,6 +20,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
      * @param usu
      * @param cargo
      */
+    Connection conexao = null;
+    PreparedStatement pst = null;
+    
+    
     public TelaPrincipal(String usu,String cargo) {
         initComponents();
         usuLabel.setText(usu);
@@ -25,6 +32,19 @@ public class TelaPrincipal extends javax.swing.JFrame {
         DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         String dataformatada = data.format(myFormatObj);
         dataLabel.setText(String.valueOf(dataformatada));
+        conexao = ModuloConexao.connector();
+        LocalDateTime datahora = LocalDateTime.now();
+        DateTimeFormatter Obj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+        String datahoraformatada = datahora.format(Obj);
+        System.out.println(conexao);
+        try {
+            String sql = "insert into horarios values(?,?)";
+            pst = conexao.prepareStatement(sql);
+            pst.setString(1, usu);
+            pst.setString(2, datahoraformatada);
+            pst.executeUpdate();
+        } catch (SQLException e) {
+        }
         
     }
 
@@ -116,6 +136,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenu1.add(jMenuItem1);
 
         jMenuItem2.setText("Horários");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem2);
 
         jMenuItem3.setText("AdicionarUsuarios");
@@ -199,7 +224,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
-
+        
     }//GEN-LAST:event_jMenu1ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
@@ -207,6 +232,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
         desktop.add(del);
         del.setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        Horarios hora = new Horarios();
+        desktop.add(hora);
+        hora.setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments
