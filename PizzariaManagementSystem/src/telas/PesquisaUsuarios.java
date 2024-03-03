@@ -80,7 +80,7 @@ public class PesquisaUsuarios extends javax.swing.JInternalFrame {
 
         jLabel4.setText("Cargo");
 
-        gerenciadorBusca.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icones/3844432_magnifier_search_zoom_icon.png"))); // NOI18N
+        gerenciadorBusca.setText("Pesquisar");
         gerenciadorBusca.setToolTipText("Pesquisar");
         gerenciadorBusca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -111,6 +111,7 @@ public class PesquisaUsuarios extends javax.swing.JInternalFrame {
             }
         });
         jTable1.setEnabled(false);
+        jTable1.setFocusable(false);
         jTable1.setOpaque(false);
         jScrollPane1.setViewportView(jTable1);
 
@@ -118,10 +119,6 @@ public class PesquisaUsuarios extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(101, 101, 101)
-                .addComponent(gerenciadorBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -149,6 +146,10 @@ public class PesquisaUsuarios extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(gerenciadorNumero)
                 .addGap(47, 47, 47))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(101, 101, 101)
+                .addComponent(gerenciadorBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -172,8 +173,8 @@ public class PesquisaUsuarios extends javax.swing.JInternalFrame {
                     .addComponent(jLabel4)
                     .addComponent(gerenciaCargo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
-                .addComponent(gerenciadorBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 207, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(gerenciadorBusca, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(171, Short.MAX_VALUE))
         );
 
         pack();

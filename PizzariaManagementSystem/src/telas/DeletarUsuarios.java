@@ -92,6 +92,7 @@ public class DeletarUsuarios extends javax.swing.JInternalFrame {
             }
         });
         jTable1.setEnabled(false);
+        jTable1.setFocusable(false);
         jTable1.setOpaque(false);
         jScrollPane1.setViewportView(jTable1);
 

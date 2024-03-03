@@ -6,29 +6,33 @@ package telas;
 import java.sql.*;
 import conexaodatabase.ModuloConexao;
 import javax.swing.table.DefaultTableModel;
-        
-
 /**
  *
  * @author lucas
  */
-public class Horarios extends javax.swing.JInternalFrame {
-    Connection conexao;
-    PreparedStatement pst;
-    ResultSet rs;
-    public Horarios() {
+public class Receitas extends javax.swing.JInternalFrame {
+    Connection conexao = null;
+    PreparedStatement pst = null;
+    ResultSet rs = null;
+    /**
+     * Creates new form Receitas
+     */
+    public Receitas() {
         initComponents();
         conexao = ModuloConexao.connector();
         try {
-            String sql = "select * from horarios";
+            
+            String sql = "select * from receitas";
             pst = conexao.prepareStatement(sql);
             rs = pst.executeQuery();
             while(rs.next()){
-                String Nome = rs.getString(1);
-                String Data = rs.getString(2);
-                String[] valores = {Nome,Data};
+                String molhomassa = rs.getString(4);
+                String nome = rs.getString(1);
+                String ingrediente1 = rs.getString(2);
+                String ingrediente2 = rs.getString(3);
                 DefaultTableModel table = (DefaultTableModel)jTable1.getModel();
-                table.addRow(valores);
+                String[] dados = {nome,molhomassa,ingrediente1,ingrediente2};
+                table.addRow(dados);
             }
         } catch (Exception e) {
         }
@@ -47,17 +51,15 @@ public class Horarios extends javax.swing.JInternalFrame {
         jTable1 = new javax.swing.JTable();
 
         setClosable(true);
-        setTitle("Horários");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Nome", "Data/Hora"
+                "Nome", "Massa+molho", "Ingrediente1", "Ingrediente2"
             }
         ));
-        jTable1.setEnabled(false);
         jTable1.setFocusable(false);
         jScrollPane1.setViewportView(jTable1);
 
@@ -66,16 +68,16 @@ public class Horarios extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(44, 44, 44)
+                .addGap(67, 67, 67)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(79, Short.MAX_VALUE))
+                .addContainerGap(88, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(165, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(50, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45))
         );
 
         pack();

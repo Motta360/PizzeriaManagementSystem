@@ -36,6 +36,7 @@ CREATE TABLE `estoque` (
 
 LOCK TABLES `estoque` WRITE;
 /*!40000 ALTER TABLE `estoque` DISABLE KEYS */;
+INSERT INTO `estoque` VALUES (1,100,'Massas'),(2,100,'Molho-Tomate'),(3,100,'Calabresas'),(4,100,'Queijo'),(5,100,'Tomate-fatia'),(6,100,'Frango'),(7,100,'Catupiry');
 /*!40000 ALTER TABLE `estoque` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -47,9 +48,9 @@ DROP TABLE IF EXISTS `horarios`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `horarios` (
-  `Nome` varchar(45) NOT NULL,
-  `Horario` varchar(45) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+  `Nome` varchar(45) DEFAULT NULL,
+  `Horario` varchar(45) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -58,7 +59,7 @@ CREATE TABLE `horarios` (
 
 LOCK TABLES `horarios` WRITE;
 /*!40000 ALTER TABLE `horarios` DISABLE KEYS */;
-INSERT INTO `horarios` VALUES ('Lucas','01-03-2024 17:27:47'),('Lucas','01-03-2024 17:27:59'),('Ana','01-03-2024 17:28:36');
+INSERT INTO `horarios` VALUES ('Lucas','02-03-2024 16:45:31'),('Lucas','02-03-2024 16:46:03'),('Ana','02-03-2024 16:59:40'),('Lucas','02-03-2024 17:01:06'),('Lucas','02-03-2024 17:11:47'),('Lucas','02-03-2024 17:13:21'),('Lucas','02-03-2024 17:14:34'),('Lucas','02-03-2024 17:49:26'),('Lucas','02-03-2024 17:51:37'),('Lucas','02-03-2024 18:29:53'),('Lucas','02-03-2024 18:45:16'),('Lucas','02-03-2024 18:46:12'),('Lucas','02-03-2024 19:06:43'),('Lucas','02-03-2024 19:07:45'),('Lucas','02-03-2024 19:22:09'),('Lucas','02-03-2024 19:24:26'),('Lucas','02-03-2024 19:30:02'),('Ana','02-03-2024 19:30:19'),('Lucas','02-03-2024 21:57:30'),('Lucas','02-03-2024 22:00:51');
 /*!40000 ALTER TABLE `horarios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -116,10 +117,11 @@ DROP TABLE IF EXISTS `receitas`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `receitas` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `Valor` float NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+  `Nome` varchar(45) DEFAULT NULL,
+  `Topping1` varchar(45) DEFAULT NULL,
+  `Topping2` varchar(45) DEFAULT NULL,
+  `molho` varchar(45) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -128,6 +130,7 @@ CREATE TABLE `receitas` (
 
 LOCK TABLES `receitas` WRITE;
 /*!40000 ALTER TABLE `receitas` DISABLE KEYS */;
+INSERT INTO `receitas` VALUES ('Calabresa','Calabresas','Nenhum','Sim'),('Marguerita','Queijo','Tomate-fatia','Sim'),('Frango','Frango','Catupiry','Sim'),('Nutella','Nutella','Morangos','Não');
 /*!40000 ALTER TABLE `receitas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -166,4 +169,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-03-01 17:31:33
+-- Dump completed on 2024-03-02 22:03:47

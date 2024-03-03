@@ -6,30 +6,34 @@ package telas;
 import java.sql.*;
 import conexaodatabase.ModuloConexao;
 import javax.swing.table.DefaultTableModel;
-        
-
 /**
  *
  * @author lucas
  */
-public class Horarios extends javax.swing.JInternalFrame {
-    Connection conexao;
-    PreparedStatement pst;
-    ResultSet rs;
-    public Horarios() {
+public class Estoque extends javax.swing.JInternalFrame {
+    
+    Connection conexao = null;
+    PreparedStatement pst = null;
+    ResultSet rs = null;
+
+    /**
+     * Creates new form Estoque
+     */
+    public Estoque() {
         initComponents();
         conexao = ModuloConexao.connector();
         try {
-            String sql = "select * from horarios";
+            String sql = "select * from estoque";
             pst = conexao.prepareStatement(sql);
             rs = pst.executeQuery();
-            while(rs.next()){
-                String Nome = rs.getString(1);
-                String Data = rs.getString(2);
-                String[] valores = {Nome,Data};
+            while (rs.next()) {
                 DefaultTableModel table = (DefaultTableModel)jTable1.getModel();
-                table.addRow(valores);
+                String nome = rs.getString(3);
+                String quant = rs.getString(2);
+                String[] dados = {nome,quant};
+                table.addRow(dados);
             }
+            
         } catch (Exception e) {
         }
     }
@@ -45,37 +49,45 @@ public class Horarios extends javax.swing.JInternalFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
 
         setClosable(true);
-        setTitle("Horários");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Nome", "Data/Hora"
+                "Nome", "Quant"
             }
         ));
-        jTable1.setEnabled(false);
         jTable1.setFocusable(false);
         jScrollPane1.setViewportView(jTable1);
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        jLabel1.setText("Estoque");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(44, 44, 44)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(66, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(79, Short.MAX_VALUE))
+                .addGap(57, 57, 57))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(235, 235, 235)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(165, Short.MAX_VALUE))
+                .addGap(26, 26, 26)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(86, Short.MAX_VALUE))
         );
 
         pack();
@@ -83,6 +95,7 @@ public class Horarios extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
