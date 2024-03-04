@@ -45,6 +45,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
             pst.executeUpdate();
         } catch (SQLException e) {
         }
+        if(cargoLabel.getText().equals("Admin")){
+            jMenu1.setEnabled(true);
+            jMenu3.setEnabled(true);
+            
+        }
         
     }
 
@@ -124,6 +129,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         cargoLabel.setText("Cargo");
 
         jMenu1.setText("Usuários");
+        jMenu1.setEnabled(false);
         jMenu1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenu1ActionPerformed(evt);
@@ -168,6 +174,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Receitas");
+        jMenu3.setEnabled(false);
 
         jCheckBoxMenuItem1.setText("ListadeReceitas");
         jCheckBoxMenuItem1.addActionListener(new java.awt.event.ActionListener() {
