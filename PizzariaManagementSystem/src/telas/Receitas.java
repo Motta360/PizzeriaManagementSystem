@@ -3,8 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JInternalFrame.java to edit this template
  */
 package telas;
-import java.sql.*;
 import javax.swing.table.DefaultTableModel;
+import java.sql.*;
+
 import conexaodatabase.ModuloConexao;
 
 /**
