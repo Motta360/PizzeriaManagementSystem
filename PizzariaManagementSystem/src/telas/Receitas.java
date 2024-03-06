@@ -4,8 +4,9 @@
  */
 package telas;
 import java.sql.*;
-import conexaodatabase.ModuloConexao;
 import javax.swing.table.DefaultTableModel;
+import conexaodatabase.ModuloConexao;
+
 /**
  *
  * @author lucas
@@ -57,7 +58,7 @@ public class Receitas extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Nome", "Massa+molho", "Ingrediente1", "Ingrediente2"
+                "Nome", "Molho", "Ingrediente1", "Ingrediente2"
             }
         ));
         jTable1.setFocusable(false);
