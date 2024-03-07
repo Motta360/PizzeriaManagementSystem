@@ -56,7 +56,7 @@ public class PedidosAtuais extends javax.swing.JFrame {
     public PedidosAtuais() {
         initComponents();
         Timer timer = new Timer();
-        timer.schedule(new ResetarTable(),0,2000);
+        timer.schedule(new ResetarTable(),0,500);
         
         
         
