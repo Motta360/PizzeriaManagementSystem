@@ -5,6 +5,8 @@
 package telas;
 import java.sql.*;
 import conexaodatabase.ModuloConexao;
+import java.util.TimerTask;
+import java.util.Timer;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -12,9 +14,20 @@ import javax.swing.table.DefaultTableModel;
  * @author autologon
  */
 public class PedidosAtuais extends javax.swing.JFrame {
+    class ResetarTable extends TimerTask{
+    public void run(){
+        preenchertable();
+    }
+    
+}
     public void preenchertable(){
         conexao = ModuloConexao.connector();
         try {
+            DefaultTableModel table = (DefaultTableModel)jTable1.getModel();
+            int a = table.getRowCount();
+            for (int b = 0; b < a; b++) {
+                table.removeRow(0);
+            }
             String sql = "select * from pedidos ";
             pst = conexao.prepareStatement(sql);
             rs = pst.executeQuery();
@@ -23,7 +36,7 @@ public class PedidosAtuais extends javax.swing.JFrame {
                 String receita = rs.getString(2);
                 String mesa = rs.getString(3);
                 String[] pedido = {id,receita,mesa};
-                DefaultTableModel table = (DefaultTableModel)jTable1.getModel();
+                table = (DefaultTableModel)jTable1.getModel();
                 table.addRow(pedido);
                
             }
@@ -42,6 +55,9 @@ public class PedidosAtuais extends javax.swing.JFrame {
      */
     public PedidosAtuais() {
         initComponents();
+        Timer timer = new Timer();
+        timer.schedule(new ResetarTable(),0,5000);
+        
         
         
     }
@@ -131,11 +147,7 @@ public class PedidosAtuais extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
           
-    DefaultTableModel table = (DefaultTableModel)jTable1.getModel();
-    int a = table.getRowCount();
-    for (int b = 0; b < a; b++) {
-        table.removeRow(0);
-    }
+    
     preenchertable();
 
 

@@ -5,6 +5,7 @@
 package telas;
 import java.sql.*;
 import conexaodatabase.ModuloConexao;
+import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -12,7 +13,9 @@ import javax.swing.JOptionPane;
  *
  * @author lucas
  */
-public class Login extends javax.swing.JFrame {
+
+public class Login extends javax.swing.JFrame  {
+    
     Connection conexao;
     PreparedStatement ps;
     ResultSet rs;
