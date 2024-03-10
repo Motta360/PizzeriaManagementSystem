@@ -127,12 +127,46 @@ public class FazerPedido extends javax.swing.JInternalFrame {
         String Mesa = (String) jComboBox2.getSelectedItem();
         String Receita = (String) jComboBox1.getSelectedItem();
         String sql = "insert into pedidos(Comida,Mesa) values(?,?);";
+        
         try {
             pst = conexao.prepareStatement(sql);
             pst.setString(1, Receita);
             pst.setString(2, Mesa);
             pst.executeUpdate();
             JOptionPane.showMessageDialog(null, "Pedido adcionado!");
+            
+        } catch (Exception e) {
+        }
+        try {
+            String molho = null,top1= null,top2= null;
+            String sql2 = "select * from receitas where Nome =?";
+            pst = conexao.prepareStatement(sql2);
+            pst.setString(1, Receita);
+            rs = pst.executeQuery();
+            while(rs.next()){
+                top1 = rs.getString(2);
+                top2 = rs.getString(3);
+                molho = rs.getString(4);
+            }
+            String sql3 = "update estoque set Quantidade = (Quantidade-1) where Nome = \"Massas\" or Nome = ? ";
+            
+            if (!(top2.equals("Nenhum"))) {
+                sql3+= "or Nome = ?";
+                
+            }
+            if(molho.equals("Sim")){
+                sql3 += "or Nome = \"Molho-Tomate\"";
+            }
+            System.out.println(sql3);
+            pst = conexao.prepareStatement(sql3);
+            pst.setString(1,top1);
+            if (!(top2.equals("Nenhum"))) {
+                pst.setString(2,top2);
+                
+            }
+            
+            pst.executeUpdate();
+                
         } catch (Exception e) {
         }
         
